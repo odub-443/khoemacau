@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: app-prod
+    image: app-prod
+    build:
+      context: .
+      target: production
+    ports:
+      - "9005:9005"
+    command: npm start
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
